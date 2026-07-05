@@ -10,14 +10,12 @@ import lombok.Setter;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "bookmarks", uniqueConstraints = {
-        @UniqueConstraint(name = "uq_user_article_bookmark", columnNames = {"user_id", "article_id"})
-})
+@Table(name = "sync_metadata")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Bookmark {
+public class SyncMetadata {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +25,14 @@ public class Bookmark {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "article_id", nullable = false)
-    private Article article;
+    @Column(name = "last_synced_at")
+    private OffsetDateTime lastSyncedAt;
+
+    @Column(name = "gmail_history_id", length = 255)
+    private String gmailHistoryId;
+
+    @Column(nullable = false, length = 50)
+    private String status;
 
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createdAt;

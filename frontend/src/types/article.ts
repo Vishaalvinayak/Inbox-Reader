@@ -1,9 +1,9 @@
 export interface Article {
   id: number;
   senderName: string;
-  subject: string;
-  plainText: string;
+  title: string;
+  snippet: string;
   readingTimeMins: number;
-  categoryName: string;
-  receivedAt: string; // Instant serializes to an ISO string over JSON
+  gmailLabel: string;
+  receivedAt: string; // OffsetDateTime serializes to an ISO string over JSON
 }

@@ -40,19 +40,17 @@ export default function ArticleCard({
       </button>
       <div className="flex items-center justify-between mb-2 pr-6">
         <span className="text-xs font-medium text-emerald-400 uppercase tracking-wide">
-          {article.categoryName}
+          {article.gmailLabel}
         </span>
         <span className="text-xs text-neutral-500">
           {article.readingTimeMins} min read
         </span>
       </div>
       <h3 className="text-lg font-semibold text-neutral-100 mb-1">
-        {article.subject}
+        {article.title}
       </h3>
       <p className="text-sm text-neutral-400 mb-3">{article.senderName}</p>
-      <p className="text-sm text-neutral-300 line-clamp-2">
-        {article.plainText}
-      </p>
+      <p className="text-sm text-neutral-300 line-clamp-2">{article.snippet}</p>
     </div>
   );
 }

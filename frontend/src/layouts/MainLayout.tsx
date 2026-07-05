@@ -18,9 +18,6 @@ export default function MainLayout() {
           <NavLink to="/" end className={linkClass}>
             Dashboard
           </NavLink>
-          <NavLink to="/categories" className={linkClass}>
-            Categories
-          </NavLink>
           <NavLink to="/bookmarks" className={linkClass}>
             Bookmarks
           </NavLink>

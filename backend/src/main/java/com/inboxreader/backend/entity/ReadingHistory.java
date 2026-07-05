@@ -10,14 +10,14 @@ import lombok.Setter;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "bookmarks", uniqueConstraints = {
-        @UniqueConstraint(name = "uq_user_article_bookmark", columnNames = {"user_id", "article_id"})
+@Table(name = "reading_history", uniqueConstraints = {
+        @UniqueConstraint(name = "uq_user_article_read", columnNames = {"user_id", "article_id"})
 })
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Bookmark {
+public class ReadingHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +31,6 @@ public class Bookmark {
     @JoinColumn(name = "article_id", nullable = false)
     private Article article;
 
-    @Column(name = "created_at", nullable = false)
-    private OffsetDateTime createdAt;
+    @Column(name = "read_at", nullable = false)
+    private OffsetDateTime readAt;
 }

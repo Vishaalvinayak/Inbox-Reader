@@ -1,13 +1,13 @@
 package com.inboxreader.backend.dto.response;
 
-import java.time.Instant;
+import java.time.OffsetDateTime;
 
 public record ArticleResponse(
     Long id,
     String senderName,
-    String subject,
-    String plainText,
+    String title,
+    String snippet,
     Integer readingTimeMins,
-    String categoryName,
-    Instant receivedAt
+    String gmailLabel,
+    OffsetDateTime receivedAt
 ) {}
