@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface SyncMetadataJpaRepository extends JpaRepository<SyncMetadata, Long> {
     Optional<SyncMetadata> findFirstByUser_IdOrderByCreatedAtDesc(Long userId);
+    Optional<SyncMetadata> findFirstByUser_IdAndStatusOrderByCreatedAtDesc(Long userId, String status);
 }

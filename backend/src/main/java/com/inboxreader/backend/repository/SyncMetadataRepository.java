@@ -6,4 +6,6 @@ import java.util.Optional;
 public interface SyncMetadataRepository {
     Optional<SyncMetadata> findLatestByUserId(Long userId);
     SyncMetadata save(SyncMetadata syncMetadata);
+
+   Optional<SyncMetadata> findLatestSuccessfulByUserId(Long userId);
 }

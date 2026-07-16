@@ -20,6 +20,7 @@ public class ArticleMapper {
                 article.getSenderName(),
                 article.getTitle(),
                 article.getSnippet(),
+                article.getContent(),
                 readingTimeMins,
                 article.getGmailLabel(),
                 article.getReceivedAt()

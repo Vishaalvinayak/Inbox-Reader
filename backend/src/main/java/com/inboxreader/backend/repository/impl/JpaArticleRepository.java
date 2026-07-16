@@ -36,4 +36,8 @@ public class JpaArticleRepository implements ArticleRepository {
     public void deleteById(Long id) {
         jpaRepository.deleteById(id);
     }
+    @Override
+public boolean existsByGmailMessageId(String gmailMessageId) {
+    return jpaRepository.existsByGmailMessageId(gmailMessageId);
+}
 }

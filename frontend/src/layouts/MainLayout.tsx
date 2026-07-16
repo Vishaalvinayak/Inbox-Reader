@@ -22,6 +22,12 @@ export default function MainLayout() {
             Bookmarks
           </NavLink>
         </nav>
+        <NavLink to="/reading-history" className={linkClass}>
+          Reading History
+        </NavLink>
+        <NavLink to="/settings" className={linkClass}>
+          Settings
+        </NavLink>
       </aside>
       <main className="flex-1">
         <Outlet />

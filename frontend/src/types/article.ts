@@ -3,7 +3,8 @@ export interface Article {
   senderName: string;
   title: string;
   snippet: string;
-  readingTimeMins: number;
+  content?: string;
+  readingTimeMins?: number;
   gmailLabel: string;
-  receivedAt: string; // OffsetDateTime serializes to an ISO string over JSON
+  receivedAt: string;
 }

@@ -5,11 +5,13 @@ import { toggleBookmark } from "../services/bookmarkService";
 interface ArticleCardProps {
   article: Article;
   initiallyBookmarked?: boolean;
+  onOpen?: (article: Article) => void;
 }
 
 export default function ArticleCard({
   article,
   initiallyBookmarked = false,
+  onOpen,
 }: ArticleCardProps) {
   const [bookmarked, setBookmarked] = useState(initiallyBookmarked);
   const [pending, setPending] = useState(false);
@@ -29,7 +31,10 @@ export default function ArticleCard({
   };
 
   return (
-    <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-5 hover:border-neutral-600 transition-colors cursor-pointer relative">
+    <div
+      onClick={() => onOpen?.(article)}
+      className="bg-neutral-900 border border-neutral-800 rounded-lg p-5 hover:border-neutral-600 transition-colors cursor-pointer relative"
+    >
       <button
         onClick={handleToggle}
         disabled={pending}
@@ -42,9 +47,19 @@ export default function ArticleCard({
         <span className="text-xs font-medium text-emerald-400 uppercase tracking-wide">
           {article.gmailLabel}
         </span>
-        <span className="text-xs text-neutral-500">
-          {article.readingTimeMins} min read
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-neutral-500">
+            {new Date(article.receivedAt).toLocaleDateString(undefined, {
+              month: "short",
+              day: "numeric",
+            })}
+          </span>
+          {article.readingTimeMins !== undefined && (
+            <span className="text-xs text-neutral-500">
+              · {article.readingTimeMins} min read
+            </span>
+          )}
+        </div>
       </div>
       <h3 className="text-lg font-semibold text-neutral-100 mb-1">
         {article.title}

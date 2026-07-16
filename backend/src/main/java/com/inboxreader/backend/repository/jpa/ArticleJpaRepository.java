@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface ArticleJpaRepository extends JpaRepository<Article, Long> {
     List<Article> findByUser_IdOrderByReceivedAtDesc(Long userId);
+
+
+    boolean existsByGmailMessageId(String gmailMessageId);
 }

@@ -2,13 +2,12 @@ package com.inboxreader.backend.dto.response;
 
 import java.time.OffsetDateTime;
 
-public record ArticleResponse(
-    Long id,
-    String senderName,
+public record ReadingHistoryItemResponse(
+    Long articleId,
     String title,
+    String senderName,
     String snippet,
-    String content,
-    Integer readingTimeMins,
     String gmailLabel,
-    OffsetDateTime receivedAt
+    OffsetDateTime receivedAt,
+    OffsetDateTime readAt
 ) {}

@@ -25,4 +25,9 @@ public class JpaSyncMetadataRepository implements SyncMetadataRepository {
     public SyncMetadata save(SyncMetadata syncMetadata) {
         return jpaRepository.save(syncMetadata);
     }
+@Override
+public Optional<SyncMetadata> findLatestSuccessfulByUserId(Long userId) {
+    return jpaRepository.findFirstByUser_IdAndStatusOrderByCreatedAtDesc(userId, "success");
+}
+    
 }

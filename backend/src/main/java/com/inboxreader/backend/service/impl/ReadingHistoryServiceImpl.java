@@ -10,6 +10,8 @@ import com.inboxreader.backend.repository.ReadingHistoryRepository;
 import com.inboxreader.backend.repository.UserRepository;
 import com.inboxreader.backend.service.ReadingHistoryService;
 import org.springframework.stereotype.Service;
+import com.inboxreader.backend.dto.response.ReadingHistoryItemResponse;
+import java.util.Comparator;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -50,6 +52,21 @@ public class ReadingHistoryServiceImpl implements ReadingHistoryService {
     public List<Long> getReadArticleIds(Long userId) {
         return readingHistoryRepository.findAllByUserId(userId).stream()
                 .map(rh -> rh.getArticle().getId())
+                .toList();
+    }
+    @Override
+    public List<ReadingHistoryItemResponse> getReadHistoryDetails(Long userId) {
+        return readingHistoryRepository.findAllByUserId(userId).stream()
+                .sorted(Comparator.comparing(ReadingHistory::getReadAt).reversed())
+                .map(rh -> new ReadingHistoryItemResponse(
+                        rh.getArticle().getId(),
+                        rh.getArticle().getTitle(),
+                        rh.getArticle().getSenderName(),
+                        rh.getArticle().getSnippet(),
+                        rh.getArticle().getGmailLabel(),
+                        rh.getArticle().getReceivedAt(),
+                        rh.getReadAt()
+                ))
                 .toList();
     }
 }

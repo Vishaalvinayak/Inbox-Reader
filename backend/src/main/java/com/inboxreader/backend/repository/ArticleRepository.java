@@ -9,4 +9,6 @@ public interface ArticleRepository {
     Optional<Article> findById(Long id);
     Article save(Article article);
     void deleteById(Long id);
+
+    boolean existsByGmailMessageId(String gmailMessageId);
 }

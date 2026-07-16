@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../services/articleService";
 import { getBookmarkedArticleIds } from "../services/bookmarkService";
 import ArticleCard from "../components/ArticleCard";
+import ArticleDetailModal from "../components/ArticleDetailModal";
 import type { Article } from "../types/article";
 
 export default function Dashboard() {
@@ -9,6 +10,7 @@ export default function Dashboard() {
   const [bookmarkedIds, setBookmarkedIds] = useState<number[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
 
   useEffect(() => {
     Promise.all([getArticles(1), getBookmarkedArticleIds(1)])
@@ -33,9 +35,17 @@ export default function Dashboard() {
             key={article.id}
             article={article}
             initiallyBookmarked={bookmarkedIds.includes(article.id)}
+            onOpen={setSelectedArticle}
           />
         ))}
       </div>
+
+      {selectedArticle && (
+        <ArticleDetailModal
+          article={selectedArticle}
+          onClose={() => setSelectedArticle(null)}
+        />
+      )}
     </div>
   );
 }
